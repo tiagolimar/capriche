@@ -24,10 +24,12 @@ class Quiz{
         let pontuacao_total = 0;
         for (const pergunta of this.perguntas){
             clear()
-            const index = read.keyInSelect(pergunta.descricao)-1;
-            if (pergunta.opcoes[index] == pergunta.opcao_certa){
-                pontuacao_total += pergunta.peso;
-            }
+            const {descricao,opcoes} = pergunta;
+            let descricoes_opcoes = opcoes.map(op=>op.descricao);
+
+            const index = read.keyInSelect(descricoes_opcoes,descricao);
+            let peso = opcoes[index].peso;
+            pontuacao_total += +peso;
         }
         return pontuacao_total
     }
@@ -53,6 +55,7 @@ class CriadorDeConteudo{
         this.perguntas = [];
         this.gerar_perguntas()
     
+        clear()
         this.numero_de_respostas = parseInt(read.question("Quantas respostas possíveis serão dadas? "))
         this.gerar_respostas()
 
@@ -64,19 +67,20 @@ class CriadorDeConteudo{
     }
 
     obter_opcoes(){
-        let continuar = true;
         let opcoes = [];
         const MAX_OPCOES = 5;
         
         for(let i=0;i<MAX_OPCOES;i++){
             clear()
             i>1 && console.log('Escreva "sair" para concluir');
-            let opcao = read.question(`Escreva a opção ${i+1}: `);
-    
-            if (opcao.toLowerCase()=="sair" && i>1){
+
+            let opcao = {}
+            opcao.descricao = read.question(`Escreva a descrição da opção ${i+1}: `);
+            if (opcao.descricao.toLowerCase()=="sair" && i>1){
                 return opcoes
             }
-            opcoes.push(opcao)
+            opcao.peso = read.question(`Escreva o peso da opção ${i+1}: `)
+            opcoes.push({...opcao})
         }
         return opcoes
     }
@@ -84,17 +88,16 @@ class CriadorDeConteudo{
     gerar_perguntas(){
         for (let i=0; i<this.numero_de_perguntas;i++){
             let pergunta = {};
+            clear()
             pergunta.descricao = read.question("Qual é a pergunta? ");
-            pergunta.peso = read.question("Qual é o peso da pergunta? ");
             pergunta.opcoes = this.obter_opcoes();
-            pergunta.opcao_certa = read.question("Qual é a opção certa? ")
             this.perguntas.push({...pergunta})
         }
     }
     
     gerar_respostas(){
         this.respostas = new Map();
-        
+        clear()
         for (let i=0; i<this.numero_de_respostas;i++){
             const descricao = read.question("Qual é a resposta? ");
             const peso_maximo = read.question("Qual é o peso máximo da resposta? ");
@@ -110,8 +113,7 @@ class CriadorDeConteudo{
 const main = ()=>{
     let criador = new CriadorDeConteudo();
     const conteudo = criador.get_conteudo;
-    console.log("Concluído! ", conteudo);
-    //new Quiz(conteudo);
+    new Quiz(conteudo);
 }
 
 export default main;

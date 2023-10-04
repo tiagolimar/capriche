@@ -1,4 +1,4 @@
-https://aleatorio.dev.br/posts/modo-nativo-quarkus/
+https://aleatorio.dev.br/posts/ideias-programar/
 
 # Capítulo 1: Prova de conceito
 
