@@ -47,7 +47,7 @@ class Quiz{
     }
 }
 
-class CriadorDeConteudo{
+export class CriadorDeConteudo{
     constructor(){
         this.titulo = read.question("Qual é o título do questionário? ",{encoding:'utf-8'})
 

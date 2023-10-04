@@ -52,3 +52,22 @@ Altere o programa para ter 5 fases:
 * Fase 2) Para cada pergunta, o programa perguntará quais são as opções e o peso da resposta de cada uma delas.
 * Fase 3) Em seguida, o programa perguntará quais são as respostas e quais são as faixas de valores utilizadas.
 * Fase 4) Por fim, o programa realizará a enquete ao usuário, usando como entrada os dados fornecidos nas etapas anteriores e respondendo ao que foi perguntado.
+
+# Capítulo 4: Utilização em arquivo
+
+* Adicione um menu iterativo na sua aplicação. O menu terá as seguintes opções:
+A) Cadastrar um questionário
+B) Listar todos os questionários
+C) Excluir um questionário
+D) Descrever um questionário
+E) Editar um questionário
+
+* Todo questionário terá um id numérico, único e incremental
+* Os questionários serão salvos em um diretório temporário (/tmp/caprichapp ou C://temp/caprichapp) chamado de *diretório base*
+* Cada questionário será salvo em formato json como um arquivo separado
+* No começo da execução, o aplicativo vai percorrer todos os arquivos do diretório base para saber qual é o valor atual do id
+* Quando o usuário selecionar a opção cadastrar, ele terá que entrar com os dados para criar o questionário, após isso a aplicação transformará o questionário em um json e irá salvar no diretório base informando que a operação ocorreu com sucesso
+* Quando o usuário selecionar a opção listar todos os questionários, a aplicação listar apenas o id e o nome do questionário
+* Quando o usuário selecionar a opção excluir, ele informará um id. Após isso, a aplicação vai excluir o arquivo do diretório base e informar que o questionário foi excluído com sucesso
+* Quando o usuário selecionar a opção descrever um questionário a aplicação pedirá um id. Tendo esse id, ela irá abrir o arquivo do questionário e escrever na tela o arquivo json
+* Quando o usuário selecionar a opção editar, precisará informar um id. Após isso, ele terá que cadastrar as informações de um questionário como se fosse cadastrar, a aplicação excluirá o questionário e cadastrará um novo
