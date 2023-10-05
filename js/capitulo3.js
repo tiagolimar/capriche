@@ -1,4 +1,5 @@
 import read from 'readline-sync';
+import prompt from 'prompt-sync';
 import clear from 'clear-console';
 
 read.setDefaultOptions({encoding:"utf-8"});
@@ -49,14 +50,14 @@ class Quiz{
 
 export class CriadorDeConteudo{
     constructor(){
-        this.titulo = read.question("Qual é o título do questionário? ",{encoding:'utf-8'})
+        this.titulo = prompt("Qual é o título do questionário? ")
 
-        this.numero_de_perguntas = parseInt(read.question("Quantas perguntas serão feitas? "))
+        this.numero_de_perguntas = parseInt(prompt("Quantas perguntas serão feitas? "))
         this.perguntas = [];
         this.gerar_perguntas()
     
         clear()
-        this.numero_de_respostas = parseInt(read.question("Quantas respostas possíveis serão dadas? "))
+        this.numero_de_respostas = parseInt(prompt("Quantas respostas possíveis serão dadas? "))
         this.gerar_respostas()
 
         this.conteudo = {
@@ -75,11 +76,11 @@ export class CriadorDeConteudo{
             i>1 && console.log('Escreva "sair" para concluir');
 
             let opcao = {}
-            opcao.descricao = read.question(`Escreva a descrição da opção ${i+1}: `);
+            opcao.descricao = prompt(`Escreva a descrição da opção ${i+1}: `);
             if (opcao.descricao.toLowerCase()=="sair" && i>1){
                 return opcoes
             }
-            opcao.peso = read.question(`Escreva o peso da opção ${i+1}: `)
+            opcao.peso = prompt(`Escreva o peso da opção ${i+1}: `)
             opcoes.push({...opcao})
         }
         return opcoes
@@ -89,7 +90,7 @@ export class CriadorDeConteudo{
         for (let i=0; i<this.numero_de_perguntas;i++){
             let pergunta = {};
             clear()
-            pergunta.descricao = read.question("Qual é a pergunta? ");
+            pergunta.descricao = prompt("Qual é a pergunta? ");
             pergunta.opcoes = this.obter_opcoes();
             this.perguntas.push({...pergunta})
         }
@@ -99,8 +100,8 @@ export class CriadorDeConteudo{
         this.respostas = new Map();
         clear()
         for (let i=0; i<this.numero_de_respostas;i++){
-            const descricao = read.question("Qual é a resposta? ");
-            const peso_maximo = read.question("Qual é o peso máximo da resposta? ");
+            const descricao = prompt("Qual é a resposta? ");
+            const peso_maximo = prompt("Qual é o peso máximo da resposta? ");
             this.respostas.set(peso_maximo,descricao);
         }
     }

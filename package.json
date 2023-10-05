@@ -13,6 +13,7 @@
   "license": "ISC",
   "dependencies": {
     "clear-console": "^1.1.0",
+    "prompt-sync": "^4.2.0",
     "readline-sync": "^1.4.10"
   }
 }
