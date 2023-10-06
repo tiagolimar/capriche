@@ -1,7 +1,7 @@
 import read from 'readline-sync';
 import clear from 'clear-console';
 
-read.setEncoding('utf-8');
+read.setDefaultOptions({encoding:"utf-8"})
 
 const introducao = ()=>{
     console.log("\nDescubra se você está afim do seu melhor amigo, responda cada pergunta a seguir com S ou N.\n");

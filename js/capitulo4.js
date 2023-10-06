@@ -39,10 +39,9 @@ class Menu{
         const conteudo = new CriadorDeConteudo();
         conteudo.id = this.id;
         clear()
-        console.log(conteudo.id);
-        read.question("...")
         const nome_do_arquivo = this.caminho + this.formatar(conteudo.titulo);
         fs.writeFileSync(nome_do_arquivo,JSON.stringify(conteudo));
+        console.log(`${this.formatar(conteudo.titulo)} salvo com sucesso!`);
     }
 }
 
