@@ -49,7 +49,7 @@ class Quiz{
 
 export class CriadorDeConteudo{
     constructor(){
-        this.titulo = read.question("Qual é o título do questionário? ")
+        this.titulo = read.question("Qual é o título do questionário? ",{encoding:'utf-8'})
 
         this.numero_de_perguntas = parseInt(read.question("Quantas perguntas serão feitas? "))
         this.perguntas = [];

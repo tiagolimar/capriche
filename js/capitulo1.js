@@ -1,17 +1,14 @@
-import readline from 'readline';
 import read from 'readline-sync';
 import clear from 'clear-console';
 
-read.setDefaultOptions({encoding:"utf-8"})
+read.setEncoding('utf-8');
 
 const introducao = ()=>{
     console.log("\nDescubra se você está afim do seu melhor amigo, responda cada pergunta a seguir com S ou N.\n");
     console.log("Vamos começar? (pressione enter)\n\n");
     
-    read.question("",(out)=>{
-        console.log(out);
-    });
-    // clear()
+    read.question("");
+    clear()
 }
 
 const criar_perguntas = ()=>{
@@ -29,7 +26,7 @@ const criar_perguntas = ()=>{
 const perguntar = (perguntas)=>{
     let pontuacao_total = 0;
     for (const pergunta of perguntas){
-        // clear()
+        clear()
         const pontuacao = read.keyInYN(pergunta) ? 1 : 0;
         pontuacao_total += pontuacao;
     }
@@ -72,7 +69,5 @@ const main = ()=>{
     const pontuacao = perguntar(perguntas);
     analisar(pontuacao);
 }
-
-main()
 
 export default main;
