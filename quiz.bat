@@ -1,7 +1,7 @@
 npm start
-Índice Internacional de Função Erétil
+Índice Internacional de Função Intelectual
 5
-Quanta certeza você tem de que pode ter uma ereção e de que consegue mantê-la?
+Quanta certeza você tem de que pode iniciar uma tarefa e de que consegue mantê-la?
 Não muita certeza
 1
 Um pouco
@@ -12,7 +12,7 @@ Com bastante certeza
 4
 Estou completamente certo
 5
-Nos momentos em que você teve ereções após estímulos sexuais, com que frequência o seu pênis ficou suficientemente rígido (duro) para permitir a penetração?
+Nos momentos em que você esteve em uma tarefa intelectual, com que frequência você ficou satisfatoriamente focado?
 Quase nunca ou nunca
 1
 Raramente (pouquíssimas vezes, considerando todas que já aconteceram)
@@ -23,7 +23,7 @@ Na maior parte das vezes
 4
 Quase todas as vezes ou todas as vezes
 5
-Quando teve relações sexuais, com que frequência conseguiu manter o pênis ereto após penetrar a sua parceira ou parceiro?
+Quando esteve em uma tarefa intelectual, com que frequência você se desconcentra com alguma coisa?
 Quase nunca ou nunca
 1
 Raramente (pouquíssimas vezes, considerando todas que já aconteceram)
@@ -34,7 +34,7 @@ Na maior parte das vezes
 4
 Quase todas as vezes ou todas as vezes
 5
-Durante a relação, quão difícil foi para você manter uma ereção até ao fim do sexo?
+Durante uma atividade intelectual, quão difícil foi para você manter o foco até o fim?
 Extremamente difícil
 1
 Muito difícil
@@ -45,7 +45,7 @@ Um pouco difícil
 4
 Não foi difícil
 5
-Quando tentou fazer sexo, com que frequência ficou satisfeito com a relação?
+Quando tentou iniciar uma atividade intelectual, com que frequência ficou satisfeito com o resultado?
 Quase nunca ou nunca
 1
 Raramente (pouquíssimas vezes, considerando todas que já aconteceram)
@@ -59,11 +59,11 @@ Quase todas as vezes ou todas as vezes
 5
 Impossível de interpretar
 5
-Disfunção erétil grave
+Disfunção intelectual grave
 11
-Disfunção erétil moderada
+Disfunção intelectual moderada
 16
-Disfunção erétil leve
+Disfunção intelectual leve
 21
-Função erétil normal
+Função intelectual normal
 30
