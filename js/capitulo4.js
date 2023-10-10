@@ -1,11 +1,12 @@
+import clear from 'clear-console';
 import { CriadorDeConteudo } from "./capitulo3.js";
-import { exists } from 'node:fs';
 import fs from 'fs';
 
 class Menu {
     constructor() {
         this.caminho = "C:\\temp\\caprichapp\\";
-        this.id = 0;
+        this.arquivos = this.obter_arquivos();
+        this.id = this.obter_id();
     }
 
     formatar(texto) {
@@ -20,6 +21,7 @@ class Menu {
             conteudo = JSON.stringify(conteudo, null, 2);
 
             fs.writeFileSync(caminho_completo, conteudo, "utf8");
+            clear();
             console.log("Arquivo salvo, parabéns!");
         } catch (erro) {
             console.error("Erro ao salvar o arquivo:", erro);
@@ -32,7 +34,7 @@ class Menu {
 
         const conteudo = criador.get_conteudo;
         conteudo.respostas = Array.from(conteudo.respostas);
-
+        conteudo.id = this.id;
         return conteudo;
     }
 
@@ -51,19 +53,45 @@ class Menu {
     obter_arquivos() {
         if (fs.existsSync(this.caminho)) {
             const arquivos = fs.readdirSync(this.caminho);
-            console.log(arquivos);
+            return arquivos
+        }else{
+            return []
         }
     }
 
-    async gerar_id() {
-        const id = 0;
+    obter_conteudo_de_arquivo(arquivo){
+        let conteudo = fs.readFileSync(this.caminho+arquivo)
+        conteudo = JSON.parse(conteudo);
+        return conteudo;
+    }
+
+    listar_arquivos(){
+        if(this.arquivos.length > 0){
+            for (const arquivo of this.arquivos){
+                const conteudo = this.obter_conteudo_de_arquivo(arquivo)
+                console.log(`ARQUIVO ${conteudo.id} - ${conteudo.titulo}`);
+            }
+        }else{
+            console.log("Não há arquivos para serem listados.");
+        }
+    }
+
+    obter_id() {
+        if(this.arquivos.length>0){
+            const ids = this.arquivos.map((arq) => this.obter_conteudo_de_arquivo(arq).id);
+            const ultimo_id = Math.max(...ids);
+            const id = ultimo_id+1;
+            return id;
+        }else{
+            return 1;
+        }
     }
 }
 
 const main = async () => {
     const menu = new Menu();
+    menu.listar_arquivos();
     // await menu.cadastrar();
-    // menu.obter_arquivos();
 };
 
 export default main;
