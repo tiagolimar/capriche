@@ -36,11 +36,11 @@ class Quiz {
             i>1 && console.log('Escreva "sair" para concluir');
 
             let opcao = {}
-            opcao.descricao = read.question(`Escreva a descrição da opção ${i+1}: `);
+            opcao.descricao = this.question(`Escreva a descrição da opção ${i+1}: `);
             if (opcao.descricao.toLowerCase()=="sair" && i>1){
                 return opcoes
             }
-            opcao.peso = read.question(`Escreva o peso da opção ${i+1}: `)
+            opcao.peso = this.question(`Escreva o peso da opção ${i+1}: `)
             opcoes.push({...opcao})
         }
         return opcoes
