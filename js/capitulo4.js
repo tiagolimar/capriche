@@ -1,52 +1,69 @@
 import { CriadorDeConteudo } from "./capitulo3.js";
-import fs from 'fs/promises'; // Importe o módulo fs.promises para operações de arquivo assíncronas.
+import { exists } from 'node:fs';
+import fs from 'fs';
 
 class Menu {
     constructor() {
         this.caminho = "C:\\temp\\caprichapp\\";
+        this.id = 0;
     }
 
     formatar(texto) {
         const regex = /[!@#$%^&*()_+{}\[\]:;<>,.?~\\|\/\-="']/g;
-        texto = texto.replace(regex, '')
-        return texto.normalize('NFD').replace(/[\u0300-\u036f]/g, "") + '.json';
+        texto = texto.replace(regex, "");
+        return texto.normalize("NFD").replace(/[\u0300-\u036f]/g, "") + ".json";
     }
 
-    async salvar_em_arquivo(conteudo, nome_do_arquivo) {
+    salvar_em_arquivo(conteudo, nome_do_arquivo) {
         try {
             const caminho_completo = this.caminho + nome_do_arquivo;
-            await fs.writeFile(caminho_completo, JSON.stringify(conteudo, null, 2), 'utf8');
+            conteudo = JSON.stringify(conteudo, null, 2);
+
+            fs.writeFileSync(caminho_completo, conteudo, "utf8");
             console.log("Arquivo salvo, parabéns!");
         } catch (erro) {
             console.error("Erro ao salvar o arquivo:", erro);
         }
     }
 
-    async gerar_conteudo(){
+    async gerar_conteudo() {
         let criador = new CriadorDeConteudo();
         await criador.criarConteudo();
-        return criador.get_conteudo;
+
+        const conteudo = criador.get_conteudo;
+        conteudo.respostas = Array.from(conteudo.respostas);
+
+        return conteudo;
     }
 
     async cadastrar() {
         try {
             let conteudo = await this.gerar_conteudo();
-            conteudo.respostas = Array.from(conteudo.respostas)
             const titulo = conteudo.titulo;
-            if(titulo){
-                const nome_do_arquivo = this.formatar(titulo);
-                console.log(this.caminho + nome_do_arquivo);
-                await this.salvar_em_arquivo(conteudo, nome_do_arquivo);
-            }
+
+            const nome_do_arquivo = this.formatar(titulo);
+            this.salvar_em_arquivo(conteudo, nome_do_arquivo);
         } catch (erro) {
             console.error("Erro ao cadastrar:", erro);
         }
+    }
+
+    obter_arquivos() {
+        if (fs.existsSync(this.caminho)) {
+            const arquivos = fs.readdirSync(this.caminho);
+            console.log(arquivos);
+        }
+    }
+
+    async gerar_id() {
+        const id = 0;
     }
 }
 
 const main = async () => {
     const menu = new Menu();
-    await menu.cadastrar();
+    // await menu.cadastrar();
+    // menu.obter_arquivos();
 };
 
 export default main;
